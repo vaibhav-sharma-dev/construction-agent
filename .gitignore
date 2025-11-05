@@ -78,7 +78,7 @@ web_modules/
 .env.test.local
 .env.production.local
 .env.local
-.env.example
+# .env.example
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
@@ -131,3 +131,6 @@ function.zip
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# prettier
+.prettierignore

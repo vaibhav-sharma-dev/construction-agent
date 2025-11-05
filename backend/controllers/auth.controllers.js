@@ -25,6 +25,10 @@ export const login = (req, res) => {
             { expiresIn: process.env.JWT_EXPIRY },
         );
 
+        // res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
+        // res.header('Access-Control-Allow-Credentials', 'true');
+        res.setHeader("Set-Cookie", "test-cookie=1;");
+
         res.status(200).json({
             status: "Authorized",
             token: authorizationToken,

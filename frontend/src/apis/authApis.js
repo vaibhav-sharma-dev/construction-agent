@@ -1,4 +1,4 @@
-// const serverUrl = "https://5q2ifjbt54.execute-api.ap-south-1.amazonaws.com/staging";
+// const serverUrl = "https://a0g37u1907.execute-api.ap-south-1.amazonaws.com";
 const serverUrl = import.meta.env.VITE_BACKEND_URL;
 
 export const loginUserApi = async (email, password) => {
@@ -9,6 +9,7 @@ export const loginUserApi = async (email, password) => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({email, password}),
+            credentials: "include",
         })
 
         return await loginUserResponse.json();

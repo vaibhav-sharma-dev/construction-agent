@@ -7,7 +7,13 @@ import {authMiddleware} from "./middlewares/auth.middlewares.js";
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"],
+    methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
+}));
+
 app.use(express.json());
 
 app.get("/api/v1/test", (req, res) => {
