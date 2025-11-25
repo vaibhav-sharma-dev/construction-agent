@@ -134,3 +134,6 @@ function.zip
 
 # prettier
 .prettierignore
+
+#package-lock
+./package-lock.json

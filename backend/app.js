@@ -4,6 +4,7 @@ import authRouter from "./routes/auth.routes.js";
 import promptResponseRouter from "./routes/promptResponse.routes.js";
 import sendEmailsRouter from "./routes/sendEmails.routes.js";
 import {authMiddleware} from "./middlewares/auth.middlewares.js";
+import { rateLimitMiddlewareFactory } from "./middlewares/rateLimit.middlewares.js";
 
 const app = express();
 
@@ -22,7 +23,15 @@ app.get("/api/v1/test", (req, res) => {
 
 app.use("/api/v1/auth", authRouter);
 
-app.use("/api/v1/search-vendors", authMiddleware, promptResponseRouter);
+app.use(
+    "/api/v1/search-vendors", 
+    authMiddleware,
+    rateLimitMiddlewareFactory({
+        window: 60_000,
+        maxRequests: 3
+    }),
+    promptResponseRouter
+);
 app.use("/api/v1/send-emails", authMiddleware, sendEmailsRouter);
 
 export default app;
